@@ -46,7 +46,18 @@ export default function List() {
         리뷰 많은 네일샵
       </div>
       <div className="list">
-        {/* 여기에 다른 리스트를 추가할 수 있습니다. */}
+        {shops.map(shop => (
+          <div className="main__list" key={shop._id}>
+            <Link href={`/about?shop_id=${shop._id}`}>
+              <div className="list_item">
+                <img className="list_image" src={shop.image_urls[0]} alt={shop.title} />
+                <div className="list_text">
+                  <span className="list_title">{shop.title}</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
 
       <div className="allist">

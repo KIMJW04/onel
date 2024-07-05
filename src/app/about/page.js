@@ -1,39 +1,46 @@
-import { ObjectId } from 'mongodb';
-import clientPromise from '@/lib/mongodb';
+"use client"
+
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Search from '@/components/Search';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { IoMdHeartEmpty } from 'react-icons/io';
 
-async function getShopData(shop_id) {
-  const client = await clientPromise;
-  const db = client.db('sample_db');
-
-  let shop;
-  try {
-    shop = await db.collection('nailshops').findOne({ _id: new ObjectId(shop_id) });
-  } catch (error) {
-    console.error("Invalid ObjectId format or database error:", error);
-    return null;
+async function fetchShopData(shop_id) {
+  const res = await fetch(`/api/shop/${shop_id}`);
+  if (!res.ok) {
+    throw new Error(`Error fetching shop data: ${res.statusText}`);
   }
-
-  return shop;
+  return res.json();
 }
 
-export default async function AboutPage({ searchParams }) {
+export default function AboutPage({ searchParams }) {
   const { shop_id } = searchParams;
+  const [shop, setShop] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Ensure shop_id is a valid ObjectId
-  if (!ObjectId.isValid(shop_id)) {
-    console.error("Invalid ObjectId format");
-    return <div>Invalid shop ID format.</div>;
+  useEffect(() => {
+    async function getShopData() {
+      try {
+        const data = await fetchShopData(shop_id);
+        setShop(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+
+    if (shop_id) {
+      getShopData();
+    }
+  }, [shop_id]);
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
-  const shop = await getShopData(shop_id);
-
   if (!shop) {
-    return <div>Shop with ID {shop_id} not found.</div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -49,30 +56,22 @@ export default async function AboutPage({ searchParams }) {
         </div>
         <div className="gallery-container">
           <div className="gallery-item-large">
-            <img
-              src={shop.image_urls[0]}
-              alt="이미지사진1"
-            />
+            <img src={shop.image_urls[0]} alt="이미지사진1" />
           </div>
           <div className="gallery">
             {shop.image_urls.slice(1).map((url, index) => (
               <div key={index} className="gallery-item">
-                <img
-                  src={url}
-                  alt={`이미지사진${index + 2}`}
-                />
+                <img src={url} alt={`이미지사진${index + 2}`} />
               </div>
             ))}
           </div>
         </div>
-
         <div className="detail_mid">
           <div className="detail_left">
             <div className="detail_title">
               <img src="/img/location.png" alt="프로필이미지" />
               <p>{shop.addresses}</p>
             </div>
-
             <div className="detail_info">
               <h2>운영시간</h2>
               <div className="profile2">
@@ -81,7 +80,6 @@ export default async function AboutPage({ searchParams }) {
                 ))}
               </div>
             </div>
-
             <div className="details">
               <h2>편의시설 및 서비스</h2>
               {shop.facilities.map((facility, index) => (
@@ -95,32 +93,30 @@ export default async function AboutPage({ searchParams }) {
                 </div>
               ))}
             </div>
-
             <div className="info_text">
               <h3>소개</h3>
-              <p>{shop.introduction}</p>
+              <pre>{shop.introduction}</pre>
             </div>
-
             <div className="info_place">
               <h2>기본가격</h2>
-              {Object.entries(shop.price_info).map(([category, price], index) => (
-                <div key={index} className="place">
+              {Object.entries(shop.price_info).map(([category, items]) => (
+                <div key={category} className="place">
                   <section>
                     <h3>{category}</h3>
-                    <p>{price.description}</p>
-                    <span>
-                      <em>{price.amount}원</em>
-                    </span>
+                    {items.map((item, index) => (
+                      <div key={index}>
+                        <p>{item.name}</p>
+                        <span><em>{item.price}</em></span>
+                      </div>
+                    ))}
                   </section>
                 </div>
               ))}
             </div>
           </div>
-
           <div className="detail_right">
             <div className="detail__review">
-              {/* 리뷰 섹션은 데이터 형식에 맞게 추가 */}
-              <Link href={"/write"} className="wirte-button_a">
+              <Link href="/write" className="wirte-button_a">
                 <button type="submit" className="review-button">
                   리뷰 작성
                 </button>
@@ -128,7 +124,6 @@ export default async function AboutPage({ searchParams }) {
             </div>
           </div>
         </div>
-
         <div className="map">
           <h2>숙소 위치</h2>
           <img src="/img/map.jpg" alt="위치 지도" />
