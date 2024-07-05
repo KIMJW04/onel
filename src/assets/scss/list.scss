@@ -1,0 +1,154 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main__list {
+  width: calc(100% / 6 - 17px);
+}
+
+.list_item {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.list_image {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  position: relative;
+}
+
+.list_text {
+  margin-top: 10px;
+}
+
+.list_title,
+.list_availability {
+  font-size: 16px;
+  color: #000;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list_price {
+  display: flex;
+  font-size: 16px;
+  gap: 25px;
+  color: #555;
+  align-items: center;
+
+  > p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    > svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.list_host {
+  font-size: 16px;
+  color: #ff93ac;
+  display: block;
+}
+
+em {
+  font-family: var(--fontF);
+  font-weight: 800;
+  font-style: normal;
+}
+
+.ratelist,
+.reviewlist,
+.allist {
+  font-size: 32px;
+  font-weight: bold;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: left;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  > svg {
+    margin-right: 10px;
+  }
+}
+
+/* 반응형 설정 */
+@media (max-width: 1240px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+  }
+
+  .main__list {
+    width: auto; /* grid 레이아웃을 사용하기 때문에 너비 자동 설정 */
+  }
+
+  .list_item {
+    width: 100%; /* 각 grid 아이템이 가득 채우도록 설정 */
+  }
+}
+
+@media (max-width: 650px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+  }
+
+  .main__list {
+    width: auto; /* grid 레이아웃을 사용하기 때문에 너비 자동 설정 */
+  }
+
+  .list_item {
+    width: 100%; /* 각 grid 아이템이 가득 채우도록 설정 */
+  }
+}
+
+@media (max-width: 300px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, auto);
+    gap: 20px;
+  }
+
+  .ratelist,
+  .reviewlist,
+  .allist {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    > svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .main__list {
+    width: auto; /* grid 레이아웃을 사용하기 때문에 너비 자동 설정 */
+  }
+
+  .list_item {
+    width: 100%; /* 각 grid 아이템이 가득 채우도록 설정 */
+  }
+}

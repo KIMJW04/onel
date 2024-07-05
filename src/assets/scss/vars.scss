@@ -1,0 +1,56 @@
+:root {
+  // --fontN: "wooriDaum";
+  --fontF: "Pretendard-Regular";
+  --fontL: "LOTTERIACHAB";
+
+  --mainBg-color: #f3ede8;
+  --subBg100: #cdc0b1;
+  --subBg200: #afa395;
+  --subBg300: #81887c;
+  --subBg400: #afa7a2;
+  --subBg500: #a6afa2;
+
+  --white: #fff;
+  --black: #000;
+  --black100: #2b2b2b;
+  --black200: #434343;
+  --black300: #686868;
+  --black400: #e0e0e0;
+
+  font-family: var(--fontF), var(--fontL);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  @media (max-width: 800px) {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+img {
+  vertical-align: top;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+li {
+  list-style: none;
+}

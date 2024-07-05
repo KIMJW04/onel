@@ -1,0 +1,65 @@
+#main {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+.main__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden; /* 슬라이더 영역을 숨기기 위해 overflow 설정 */
+}
+
+.left_button,
+.right_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #ff385c;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.main__menu ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.3s ease; /* 슬라이드 애니메이션 */
+}
+
+.main__menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+
+.menu_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+}
+
+.menu_icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 1240px) {
+  .main__menu ul {
+    transform: translateX(0); /* 초기 위치 설정 */
+  }
+}
