@@ -1,3 +1,3 @@
 export default function handler(req, res) {
-    res.status(200).json({ env: process.env.YOUR_ENV_VARIABLE });
+    res.status(200).json({ env: process.env.MONGODB_URI });
 }
