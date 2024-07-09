@@ -39,6 +39,9 @@ export default function Header() {
         <Link href="/join">
           <button className="togglebtn">회원가입</button>
         </Link>
+        <Link href="/mypage">
+          <button className="togglebtn">나의활동</button>
+        </Link>
       </div>
     </div>
   );

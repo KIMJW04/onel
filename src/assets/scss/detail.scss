@@ -154,58 +154,63 @@
   margin-top: 20px;
 }
 
-.info_text > p {
+.info_text > pre {
   margin-top: 20px;
   margin-bottom: 40px;
+  font-family: var(--fontF);
+  white-space: pre-wrap; /* pre tag내에 word wrap */
 }
 
 .info_place {
   border-top: 1px solid #ccc;
   margin-bottom: 20px;
+  padding: 20px 0;
 }
 
 .info_place > h2 {
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .info_place .place {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  /* 아이템이 한 줄에 넘치면 다음 줄로 넘어가게 설정 */
+  margin-bottom: 20px;
+  /* 각 섹션의 간격을 추가 */
 }
 
 .info_place .place section {
   flex: 1 1 100%;
-  /* 각 섹션이 한 줄을 차지하도록 설정 */
   min-width: 200px;
-  /* 최소 너비 설정 */
   max-width: 100%;
-  /* 최대 너비 설정 */
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
   padding: 10px 0;
-  /* 패딩 추가 */
   border-bottom: 1px dotted #ccc;
-  /* 점선 구분선 추가 */
 }
 
 .info_place .place section > h3 {
-  font-size: 16px;
-  font-weight: 300;
-  flex: 1;
-  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  /* 제목의 아래쪽 마진 추가 */
 }
 
-.info_place .place section > p {
+.info_place .place section > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 항목을 수평 및 수직 정렬 */
+  padding: 5px 0;
+  /* 항목의 패딩 추가 */
+}
+
+.info_place .place section > div > p {
   font-size: 16px;
   flex: 2;
   margin: 0;
 }
 
-.info_place .place section > span {
+.info_place .place section > div > span {
   font-size: 16px;
   font-weight: bold;
   flex: 1;
@@ -220,6 +225,8 @@
   margin-bottom: 100px;
   position: relative;
   overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 
   .detail__review:-webkit-scrollbar {
     display: none;
@@ -333,7 +340,7 @@
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background: #ff385c;
+  background: #ff93ac;
   color: #fff;
   font-size: 16px;
   cursor: pointer;

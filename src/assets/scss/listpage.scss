@@ -1,0 +1,16 @@
+.pagelists {
+  .end {
+    > h1 {
+    }
+    > ul {
+      gap: 2rem;
+    }
+  }
+
+  .ing {
+    margin-top: 3rem;
+    > ul {
+      gap: 2rem;
+    }
+  }
+}

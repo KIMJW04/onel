@@ -1,0 +1,16 @@
+export const CITY_MAP = {
+  seoul: "서울",
+  busan: "부산",
+  incheon: "인천",
+  gwangju: "광주",
+  dajeun: "대전",
+  ulsan: "울산",
+  sejong: "세종",
+  gyeonggido: "경기도",
+  gangwon: "강원도",
+  chungcheong: ["충북", "충남"],
+  jeollado: "전라도",
+  gyeongsangdo: "경상도",
+  gyeongsangnamdo: "경상남도",
+  jeju: "제주도",
+};
