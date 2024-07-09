@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { GoStar } from "react-icons/go";
 import { BsChatSquareText } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
 
-export default function List() {
+function ShopListComponent() {
   const [shops, setShops] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const router = useRouter();
-  const searchParams = useSearchParams(); // 변경된 부분
+  const searchParams = useSearchParams();
   const address = searchParams.get("address") || "";
 
   const fetchShops = async (page) => {
@@ -131,5 +131,13 @@ export default function List() {
         </div>
       )}
     </>
+  );
+}
+
+export default function List() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopListComponent />
+    </Suspense>
   );
 }
