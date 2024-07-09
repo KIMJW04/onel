@@ -2,6 +2,8 @@ import clientPromise from "@/lib/mongodb";
 import { CITY_MAP } from "@/constants/index";
 
 export async function GET(req) {
+  console.log("Environment Variable TEST:", process.env.YOUR_ENV_VARIABLE); // 환경 변수 출력
+
   const { searchParams } = new URL(req.url);
   const cityKey = searchParams.get("address");
   const city = CITY_MAP[cityKey];
