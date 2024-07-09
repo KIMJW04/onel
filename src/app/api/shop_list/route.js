@@ -2,7 +2,17 @@ import clientPromise from "@/lib/mongodb";
 import { CITY_MAP } from "@/constants/index";
 
 export async function GET(req) {
-  console.log("Environment Variable TEST:", process.env.YOUR_ENV_VARIABLE); // 환경 변수 출력
+  // 환경 변수 확인
+  if (!process.env.MONGODB_URI) {
+    return new Response(JSON.stringify({ error: "Environment variable not set" }), {
+      status: 500, // 상태 코드를 500으로 설정하여 환경 변수가 설정되지 않았음을 명확히 함
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  console.log("Environment Variable TEST:", process.env.MONGODB_URI); // 환경 변수 출력
 
   const { searchParams } = new URL(req.url);
   const cityKey = searchParams.get("address");
