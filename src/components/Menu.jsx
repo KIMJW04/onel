@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { CITY_MAP } from '@/constants';
 
 export default function Menu() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,21 +34,21 @@ export default function Menu() {
   };
 
   const items = [
-    { href: "/", src: "/img/korea.png", label: "전체" },
-    { href: "/seoul", src: "/img/seoul.svg", label: "서울" },
-    { href: "/busan", src: "/img/busan.svg", label: "부산" },
-    { href: "/incheon", src: "/img/incheon.svg", label: "인천" },
-    { href: "/gwangju", src: "/img/gwangju.svg", label: "광주" },
-    { href: "/dajeun", src: "/img/dajeun.svg", label: "대전" },
-    { href: "/ulsan", src: "/img/ulsan.svg", label: "울산" },
-    { href: "/sejong", src: "/img/sejong.svg", label: "세종" },
-    { href: "/gyeonggido", src: "/img/gyeonggido.svg", label: "경기도" },
-    { href: "/gangwon", src: "/img/gangwon.svg", label: "강원도" },
-    { href: "/Chungcheong", src: "/img/Chungcheong.svg", label: "충청도" },
-    { href: "/Jeollado", src: "/img/Jeollado.svg", label: "전라도" },
-    { href: "/gyeongsangdo", src: "/img/sangdo.svg", label: "경상도" },
-    { href: "/gyeongsangnamdo", src: "/img/namdo.svg", label: "경상남도" },
-    { href: "/jeju", src: "/img/jeju.svg", label: "제주도" },
+    { href: "/?address=", src: "/img/korea.png", label: "전체" },
+    { href: "/?address=seoul", src: "/img/seoul.svg", label: "서울" },
+    { href: "/?address=busan", src: "/img/busan.svg", label: "부산" },
+    { href: "/?address=incheon", src: "/img/incheon.svg", label: "인천" },
+    { href: "/?address=gwangju", src: "/img/gwangju.svg", label: "광주" },
+    { href: "/?address=dajeun", src: "/img/dajeun.svg", label: "대전" },
+    { href: "/?address=ulsan", src: "/img/ulsan.svg", label: "울산" },
+    { href: "/?address=sejong", src: "/img/sejong.svg", label: "세종" },
+    { href: "/?address=gyeonggido", src: "/img/gyeonggido.svg", label: "경기도" },
+    { href: "/?address=gangwon", src: "/img/gangwon.svg", label: "강원도" },
+    { href: "/?address=chungcheong", src: "/img/Chungcheong.svg", label: "충청도" },
+    { href: "/?address=jeollado", src: "/img/Jeollado.svg", label: "전라도" },
+    { href: "/?address=gyeongsangdo", src: "/img/sangdo.svg", label: "경상도" },
+    { href: "/?address=gyeongsangnamdo", src: "/img/namdo.svg", label: "경상남도" },
+    { href: "/?address=jeju", src: "/img/jeju.svg", label: "제주도" },
   ];
 
   return (
