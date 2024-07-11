@@ -4,7 +4,6 @@
   background-color: #fff;
   width: 100%;
   padding: 0 100px 0 100px;
-  overflow: hidden;
 }
 
 #nav {
@@ -12,6 +11,7 @@
   z-index: 10000;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   width: 100%;
   margin-top: 10px;
 }
@@ -36,13 +36,9 @@
 
 .right {
   margin-top: 20px;
-  right: 0;
-  position: absolute;
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 400px;
-  height: 100px;
+  position: relative;
 }
 
 .right p {
@@ -87,9 +83,9 @@
 #toggleBox {
   border-radius: 20px;
   box-shadow: 0 0 10px #A9A9A9;
-  top: 85px;
-  right: 150px;
-  position: absolute;
+  position: fixed;
+  right: 100px;
+  top: 100px;
   background-color: #fff;
   width: 150px;
   padding: 10px 0 10px 0;
