@@ -6,8 +6,6 @@ import Footer from "@/components/Footer";
 export default function page() {
     return (
         <>
-            <Header />
-            <Search />
             <main className='join'>
                 <div className="join-container">
                     <h1>회원가입</h1>

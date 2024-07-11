@@ -6,8 +6,6 @@ import Footer from "@/components/Footer";
 export default function page() {
     return (
         <>
-            <Header />
-            <Search />
             <main className='login'>
                 <div className="login-container">
                     <h1>로그인</h1>
