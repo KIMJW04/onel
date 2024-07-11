@@ -1,85 +1,184 @@
+.write_divider {
+  width: 100vw;
+  border: 1px solid #f7f7f7;
+  margin-top: 1.5rem;
+}
+
 .reviewWrite {
-  padding: 16px;
-  max-width: 600px;
+  width: 60%;
+  height: 140vh;
   margin: 0 auto;
-  background-color: white;
-  border: 1px solid #e9e9e9;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-.header {
   display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
 
-.profileImage {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 16px;
-}
+  .write_left {
+    width: 40%;
+    height: 60vh;
+    margin-top: 3rem;
+    border-right: 1px solid #000;
+    overflow: hidden;
 
-.nickname {
-  font-size: 1.125rem;
-  font-weight: 600;
-}
+    > h1 {
+      font-family: var(--fontS);
+      font-size: 40px;
+      text-align: left;
+      margin-left: 1.5rem;
+    }
 
-.date {
-  color: gray;
-}
+    .list {
+      display: flex;
 
-.rating {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
+      .main__list {
+        width: 80%;
 
-.star {
-  font-size: 2rem;
-  color: #ff93ac;
-  margin: 0 5px;
-  width: 60px;
-  height: 60px;
-}
+        .list_item {
+          display: flex;
+          flex-direction: column;
+          background-color: white;
+          border-radius: 8px;
+          overflow: hidden;
 
-.textarea {
-  width: 100%;
-  height: 100px;
-  padding: 8px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  resize: none;
-  margin-bottom: 16px;
-  font-size: 1rem;
-}
+          .list_image {
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            position: relative;
+            margin-top: 1rem;
+          }
 
-.uploadedImage {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
+          .list_text {
+            margin-top: 10px;
+            line-height: 1.5;
+          }
 
-.uploadButton {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #ff93ac;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: center;
-}
+          .list_icon {
+            display: flex;
+            justify-content: space-between;
 
-.write-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background: #ff93ac;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
+            > p {
+              font-size: 18px;
+
+              > svg {
+                width: 1rem;
+                height: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .write_right {
+    width: 60%;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    overflow: auto; /* 스크롤 가능하게 설정 */
+
+    /* 웹킷 브라우저(크롬, 사파리 등)에서 스크롤바 숨기기 */
+    &::-webkit-scrollbar {
+      width: 0; /* 스크롤바 너비를 0으로 설정 */
+      height: 0;
+    }
+
+    .write01 {
+      margin-bottom: 2rem;
+
+      > h2 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .rating {
+        display: flex;
+
+        > div {
+          > svg {
+            width: 5rem;
+            height: 7rem;
+            cursor: pointer;
+          }
+        }
+
+        .star {
+        }
+      }
+    }
+
+    .write02 {
+      margin-bottom: 2rem;
+
+      > h2 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      > input {
+        width: 90%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+
+      > p {
+        width: 90%;
+        font-size: 14px;
+        text-align: right;
+        color: #000;
+      }
+    }
+
+    .write03 {
+      margin-bottom: 2rem;
+
+      > h2 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      > input {
+        width: 90%;
+        height: 30vh;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+
+      > p {
+        width: 90%;
+        font-size: 14px;
+        text-align: right;
+        color: #000;
+      }
+    }
+
+    .write04 {
+      margin-bottom: 2rem;
+
+      > h2 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .uploadedImageContainer {
+        margin-bottom: 1rem;
+
+        .uploadedImage {
+          width: 90%;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .write-button {
+      width: 90%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background: #ff93ac;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+  }
 }

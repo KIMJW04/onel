@@ -1,9 +1,9 @@
-"use client";  // "use client" 지시문을 최상단에 위치시킵니다.
-
-import Link from "next/link";
+"use client";
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { FaLink } from "react-icons/fa6";
 import { IoMdHeartEmpty } from "react-icons/io";
 import FilledStar from "@/components/FilledStar";
@@ -25,7 +25,6 @@ export default function AboutPage({ searchParams }) {
   const [error, setError] = useState(null);
   const detailLeftRef = useRef(null);
   const detailRightRef = useRef(null);
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     async function getShopData() {
@@ -72,15 +71,13 @@ export default function AboutPage({ searchParams }) {
     }
   }, [shop]);
 
-  const handleShareClick = () => {
-    const link = `${window.location.origin}/about?shop_id=${shop._id}`;
-    navigator.clipboard.writeText(link).then(() => {
-      setMessage("링크가 복사되었습니다.");
-      setTimeout(() => {
-        setMessage("");
-      }, 2000); // 2초 후에 메시지를 숨깁니다.
-    });
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!shop) {
+    return <div>Loading...</div>;
+  }
 
   const icons = [
     { src: "/icon/dog.png", label: "반려동물 동반" },
@@ -96,18 +93,9 @@ export default function AboutPage({ searchParams }) {
     { src: "/icon/people.png", label: "단체 이용 가능" },
     { src: "/icon/eyelashes.png", label: "속눈썹 연장" },
     { src: "/icon/massage.png", label: "왁싱" },
-    { src: "/icon/massage.png", label: "스킨/바디케어" },
     { src: "/icon/moon.png", label: "심야영업" },
     { src: "/icon/bag.png", label: "포장" },
   ];
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!shop) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -116,7 +104,7 @@ export default function AboutPage({ searchParams }) {
         <div className="detail_top">
           <h1>{shop.title || "값이 없습니다"}</h1>
           <div className="save">
-            <button onClick={handleShareClick}>
+            <button>
               <FaLink />
               공유하기
             </button>
@@ -126,7 +114,6 @@ export default function AboutPage({ searchParams }) {
             </button>
           </div>
         </div>
-        {message && <div className="message">{message}</div>}
 
         <div className="gallery-container">
           <div className="gallery-item-large">
@@ -134,7 +121,7 @@ export default function AboutPage({ searchParams }) {
               src={
                 shop.image_urls && shop.image_urls[0]
                   ? shop.image_urls[0]
-                  : "/img/no-image.png"
+                  : "/img/default-image.jpg"
               }
               alt="이미지사진1"
             />
@@ -143,15 +130,14 @@ export default function AboutPage({ searchParams }) {
             {shop.image_urls && shop.image_urls.length > 1 ? (
               shop.image_urls.slice(1).map((url, index) => (
                 <div key={index} className="gallery-item">
-                  <img src={url && url.trim() ? url : "/img/no-image.png"} alt={`이미지사진${index + 2}`} />
+                  <img src={url} alt={`이미지사진${index + 2}`} />
                 </div>
               ))
             ) : (
-              <p>제공된 이미지가 없습니다</p>
+              <p>이미지가 없습니다</p>
             )}
           </div>
         </div>
-
 
         <div className="detail_mid">
           <div className="detail_left" ref={detailLeftRef}>
@@ -165,7 +151,7 @@ export default function AboutPage({ searchParams }) {
                     </p>
                   ))
                 ) : (
-                  <p>제공된 운영시간 정보가 없습니다</p>
+                  <p>운영시간 정보가 없습니다</p>
                 )}
               </div>
             </div>
@@ -192,10 +178,9 @@ export default function AboutPage({ searchParams }) {
                   })}
                 </div>
               ) : (
-                <p>제공된 편의시설 정보가 없습니다</p>
+                <p>편의시설 정보가 없습니다</p>
               )}
             </div>
-
             <div className="info_text">
               <h2>소개</h2>
               {shop.introduction ? (
@@ -227,7 +212,7 @@ export default function AboutPage({ searchParams }) {
                     </div>
                   ))
                 ) : (
-                  <p>제공된 가격 정보가 없습니다</p>
+                  <p>가격 정보가 없습니다</p>
                 )}
                 <Link href="/write" className="review-button">
                   네이버 예약하기
@@ -280,6 +265,16 @@ export default function AboutPage({ searchParams }) {
                   </div>
                 </div>
               </div>
+              <div className="review_img">
+                <div className="image-container">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA2MTJfOTMg%2FMDAxNzE4MTg4NjY5NDg1.nRr9k141ZpOHve8H4oS-Ek0wPzbYlaGFlKGu7r497Tog.eJkThHvmlRk8oBpORUfNI4WmDlz5nWoxhUMYz45cPOwg.JPEG%2FD64531E1-2F21-47F1-9021-43999FDCB28C.jpeg%3Ftype%3Dw1500_60_sharpen"
+                    alt="리뷰 이미지"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
               <p className="comment_text">
                 🥰늘 믿고 가는 네일 맛집입니다🥰
                 쨍한 블루 원컬러로 교체하였는데 역시 맘에 들어요.
@@ -321,7 +316,16 @@ export default function AboutPage({ searchParams }) {
                   </div>
                 </div>
               </div>
-
+              <div className="review_img">
+                <div className="image-container">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA2MTJfOTMg%2FMDAxNzE4MTg4NjY5NDg1.nRr9k141ZpOHve8H4oS-Ek0wPzbYlaGFlKGu7r497Tog.eJkThHvmlRk8oBpORUfNI4WmDlz5nWoxhUMYz45cPOwg.JPEG%2FD64531E1-2F21-47F1-9021-43999FDCB28C.jpeg%3Ftype%3Dw1500_60_sharpen"
+                    alt="리뷰 이미지"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
               <p className="comment_text">
                 쏙오프 늘 손상없고 깔끔하게 케어해주셔서 넘 좋아요! 스킨톤의 깔끔한 네일하고 싶었는데 고민되는 컬러 두 가지 테스트로 발라보고 결정했어요~~ 언제나 깔끔하고 예쁜 젤네일 해주셔서 알잘딱깔센 미나쌤 늘 감사해요!
               </p>
@@ -357,6 +361,16 @@ export default function AboutPage({ searchParams }) {
                       ))}
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="review_img">
+                <div className="image-container">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA2MTJfOTMg%2FMDAxNzE4MTg4NjY5NDg1.nRr9k141ZpOHve8H4oS-Ek0wPzbYlaGFlKGu7r497Tog.eJkThHvmlRk8oBpORUfNI4WmDlz5nWoxhUMYz45cPOwg.JPEG%2FD64531E1-2F21-47F1-9021-43999FDCB28C.jpeg%3Ftype%3Dw1500_60_sharpen"
+                    alt="리뷰 이미지"
+                    layout="fill"
+                    objectFit="cover"
+                  />
                 </div>
               </div>
               <p className="comment_text">
@@ -401,7 +415,16 @@ export default function AboutPage({ searchParams }) {
                   </div>
                 </div>
               </div>
-
+              <div className="review_img">
+                <div className="image-container">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA2MTJfOTMg%2FMDAxNzE4MTg4NjY5NDg1.nRr9k141ZpOHve8H4oS-Ek0wPzbYlaGFlKGu7r497Tog.eJkThHvmlRk8oBpORUfNI4WmDlz5nWoxhUMYz45cPOwg.JPEG%2FD64531E1-2F21-47F1-9021-43999FDCB28C.jpeg%3Ftype%3Dw1500_60_sharpen"
+                    alt="리뷰 이미지"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
               <p className="comment_text">
                 아이 네일아트 해주었어요.
                 손뜯는거 못하게 하려고 해줬는데

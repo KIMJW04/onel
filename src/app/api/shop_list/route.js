@@ -40,20 +40,22 @@ export async function GET(req) {
         ])
         .toArray();
     } else {
-      // 특정 도시 리스트를 가져오기
+      // 특정 도시 리스트를 랜덤하게 가져오기
       shops = await db
         .collection("nailshops")
-        .find(query, {
-          projection: {
-            _id: 1,
-            shop_id: 1,
-            title: 1,
-            image_urls: 1,
-            addresses: 1,
+        .aggregate([
+          { $match: query },
+          { $sample: { size: limit } },
+          {
+            $project: {
+              _id: 1,
+              shop_id: 1,
+              title: 1,
+              image_urls: 1,
+              addresses: 1,
+            },
           },
-        })
-        .skip((page - 1) * limit)
-        .limit(limit)
+        ])
         .toArray();
     }
 

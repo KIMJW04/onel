@@ -1,10 +1,22 @@
-#main {
-  width: 90%;
-  margin: 0 auto;
+#menu {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  top: 154px;
+  background-color: #fff;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 20px;
+
+  .menu__container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .main__menu {
@@ -12,7 +24,8 @@
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  overflow: hidden; /* 슬라이더 영역을 숨기기 위해 overflow 설정 */
+  overflow: hidden;
+  /* 슬라이더 영역을 숨기기 위해 overflow 설정 */
 }
 
 .left_button,
@@ -34,7 +47,9 @@
   align-items: center;
   padding: 0;
   list-style: none;
-  transition: transform 0.3s ease; /* 슬라이드 애니메이션 */
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+  /* 슬라이드 애니메이션 */
 }
 
 .main__menu li {
@@ -42,6 +57,7 @@
   flex-direction: column;
   align-items: center;
   width: 90px;
+  white-space: normal;
 }
 
 .menu_text {
@@ -60,6 +76,7 @@
 
 @media (max-width: 1240px) {
   .main__menu ul {
-    transform: translateX(0); /* 초기 위치 설정 */
+    transform: translateX(0);
+    /* 초기 위치 설정 */
   }
 }
